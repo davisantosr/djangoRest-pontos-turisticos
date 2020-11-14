@@ -12,7 +12,10 @@ class PontoTuristicoViewSet(ModelViewSet):
   def get_queryset(self):
     return PontoTuristico.objects.filter(aprovado=True)
 
-## Sobrescrevendo o Método List - Comportamento padrão
-#  de listar os objetos
-  def list(self, request, *args, **kwargs):
-    return Response({"obj":"Sou o obj"})
+# ## Sobrescrevendo o Método List - Comportamento padrão
+# #  de listar os objetos
+#   def list(self, request, *args, **kwargs):
+#     return Response({"obj":"Sou o obj"})
+
+# def create(self, request, *args, **kwargs):
+#   return Response({'Hello': request.data['user']}) #Na requisição é passado um objeto com chave 'user'
