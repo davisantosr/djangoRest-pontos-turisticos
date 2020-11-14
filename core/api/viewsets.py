@@ -21,6 +21,14 @@ class PontoTuristicoViewSet(ModelViewSet):
 # def create(self, request, *args, **kwargs):
 #   return Response({'Hello': request.data['user']}) #Na requisição é passado um objeto com chave 'user'
 
-  def destroy(self, request, *args, **kwargs):
-    print(request)
-    return Response('ok', status=status.HTTP_200_OK)
+# def destroy(self, request, *args, **kwargs):
+#   pass
+
+  def retrieve(self, request, *args, **kwargs):
+    pass
+
+  def update(self, request, *args, **kwargs): #PUT
+    pass
+
+  def partial_update(self, request, *args, **kwargs): #PATCH
+    pass
