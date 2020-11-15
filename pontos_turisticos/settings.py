@@ -133,6 +133,9 @@ MEDIA_ROOT = 'imagens'
 
 MEDIA_URL = '/media/'
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        # 'django_filters.rest_framework.DjangoFilterBackend'
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}

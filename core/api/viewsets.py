@@ -5,12 +5,17 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from core.models import PontoTuristico
 from .serializers import PontoTuristicoSerializer
 
 
 class PontoTuristicoViewSet(ModelViewSet):
   serializer_class = PontoTuristicoSerializer
+  permission_classes = (IsAuthenticated,)
+  authentication_classes = (TokenAuthentication,)
   filter_backends = [SearchFilter]
   search_fields = ['nome', 'descricao', 'endereco__linha1']
   
