@@ -12,8 +12,21 @@ class PontoTuristicoViewSet(ModelViewSet):
   serializer_class = PontoTuristicoSerializer
 
   def get_queryset(self):
-    return PontoTuristico.objects.filter(aprovado=True)
+    id = self.request.query_params.get('id', None)
+    nome = self.request.query_params.get('nome', None)
+    descricao = self.request.query_params.get('descricao', None)
 
+    queryset = PontoTuristico.objects.all()
+
+    if id:
+      queryset = PontoTuristico.objects.filter(id=id)
+
+    if nome:
+      queryset.filter(nome=nome)
+
+    if descricao:
+      queryset.filter(descricao=descricao)
+    return queryset
 # ## Sobrescrevendo o Método List - Comportamento padrão
 # #  de listar os objetos
 #   def list(self, request, *args, **kwargs):
@@ -22,17 +35,17 @@ class PontoTuristicoViewSet(ModelViewSet):
 # def create(self, request, *args, **kwargs):
 #   return Response({'Hello': request.data['user']}) #Na requisição é passado um objeto com chave 'user'
 
-# def destroy(self, request, *args, **kwargs):
-#   pass
+  def destroy(self, request, *args, **kwargs):
+    return super(PontoTuristicoViewSet, self).destroy(request, *args, **kwargs)
 
   def retrieve(self, request, *args, **kwargs):
-    pass
+    return super(PontoTuristicoViewSet, self).retrieve(request, *args, **kwargs)
 
   def update(self, request, *args, **kwargs): #PUT
-    pass
+    return super(PontoTuristicoViewSet, self).update(request, *args, **kwargs)
 
   def partial_update(self, request, *args, **kwargs): #PATCH
-    pass
+    return super(PontoTuristicoViewSet, self).partial_update(request, *args, **kwargs)
 
 # Exemplo de implementação de actions personalizadas, usando decorators
 
@@ -49,6 +62,6 @@ class PontoTuristicoViewSet(ModelViewSet):
   #     return Response('Not allowed')
   
 #Exemplo de action para endpoint geral(não apenas para o recurso)
-  @action(methods=['get'], detail=False)
-  def teste(self, request):
-    pass
+  # @action(methods=['get'], detail=False)
+  # def teste(self, request):
+  #   pass
