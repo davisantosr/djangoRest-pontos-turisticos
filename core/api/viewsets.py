@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status 
+from rest_framework.decorators import action
 
 from core.models import PontoTuristico
 from .serializers import PontoTuristicoSerializer
@@ -32,3 +33,16 @@ class PontoTuristicoViewSet(ModelViewSet):
 
   def partial_update(self, request, *args, **kwargs): #PATCH
     pass
+
+# Exemplo de implementação de actions personalizadas, usando decorators
+
+# endereço da requisição seria: http://url/pontosturisticos/1/denunciar
+  @action(methods=['get', 'post'], detail=True)
+  def denunciar(self, request, pk=None):
+    print(request.data)
+    obj = request.data
+    
+    if obj['user'] == 'Usuário1':
+      return Response('Alright')
+    else:
+      return Response('Not allowed')
