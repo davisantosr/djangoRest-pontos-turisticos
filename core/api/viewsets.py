@@ -13,6 +13,10 @@ class PontoTuristicoViewSet(ModelViewSet):
   serializer_class = PontoTuristicoSerializer
   filter_backends = [SearchFilter]
   search_fields = ['nome', 'descricao', 'endereco__linha1']
+  
+  # #Conseguimos setar o campo de busca do objeto(recurso) pelo nome. Ex:
+  # #https://url/<nome>
+  lookup_field = 'nome'
 
   def get_queryset(self):
     id = self.request.query_params.get('id', None)
