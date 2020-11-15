@@ -37,12 +37,18 @@ class PontoTuristicoViewSet(ModelViewSet):
 # Exemplo de implementação de actions personalizadas, usando decorators
 
 # endereço da requisição seria: http://url/pontosturisticos/1/denunciar
-  @action(methods=['get', 'post'], detail=True)
-  def denunciar(self, request, pk=None):
-    print(request.data)
-    obj = request.data
+  
+  # @action(methods=['get', 'post'], detail=True)
+  # def denunciar(self, request, pk=None):
+  #   print(request.data)
+  #   obj = request.data
     
-    if obj['user'] == 'Usuário1':
-      return Response('Alright')
-    else:
-      return Response('Not allowed')
+  #   if obj['user'] == 'Usuário1':
+  #     return Response('Alright')
+  #   else:
+  #     return Response('Not allowed')
+  
+#Exemplo de action para endpoint geral(não apenas para o recurso)
+  @action(methods=['get'], detail=False)
+  def teste(self, request):
+    pass
