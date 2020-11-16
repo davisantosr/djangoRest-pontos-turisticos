@@ -16,6 +16,10 @@ class PontoTuristico(models.Model):
   endereco = models.ForeignKey(Endereco, null=True, blank=True, on_delete=models.CASCADE)
   foto = models.ImageField(upload_to='pontos_turisticos', null=True, blank=True)
 
+  @property
+  def descricao_completa_complementar(self):
+    return '%s - %s' % (self.nome, self.descricao)
+
 
   def __str__(self):
     return self.nome
